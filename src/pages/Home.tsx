@@ -15,7 +15,6 @@ export const Home: React.FC = () => {
   const filteredAndSortedNotes = useMemo(() => {
     let filtered = notes;
 
-    // Filter by search term
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase();
       filtered = notes.filter(note =>
@@ -25,7 +24,6 @@ export const Home: React.FC = () => {
       );
     }
 
-    // Sort notes
     return filtered.sort((a, b) => {
       switch (sortBy) {
         case 'newest':
@@ -52,14 +50,14 @@ export const Home: React.FC = () => {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 px-4 sm:px-6">
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-slate-800 dark:text-slate-100 mb-4">
+        <h1 className="text-4xl sm:text-3xl font-bold text-slate-800 dark:text-slate-100 mb-4">
           AI-POWERED NOTES
         </h1>
-        <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-      Capture your thoughts, get AI summaries, and organize your ideas with ease
+        <p className="text-xl sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          Capture your thoughts, get AI summaries, and organize your ideas with ease
         </p>
       </div>
 
@@ -77,7 +75,7 @@ export const Home: React.FC = () => {
       />
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <div className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/60 rounded-xl p-6">
           <div className="flex items-center space-x-3">
             <FileText className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
@@ -125,38 +123,38 @@ export const Home: React.FC = () => {
 
       {/* Notes Grid */}
       {filteredAndSortedNotes.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
           {filteredAndSortedNotes.map(note => (
             <NoteCard key={note.id} note={note} />
           ))}
         </div>
       ) : notes.length === 0 ? (
-        <div className="text-center py-16">
-          <div className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/60 rounded-2xl p-12 max-w-md mx-auto">
-            <FileText className="w-16 h-16 text-slate-400 mx-auto mb-6" />
-            <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4">
+        <div className="text-center py-16 px-4 sm:px-6">
+          <div className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/60 rounded-2xl p-8 sm:p-12 max-w-md mx-auto transition-shadow duration-300 hover:shadow-2xl hover:shadow-indigo-500/30">
+            <FileText className="w-16 h-16 text-slate-400 mx-auto mb-6 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-6 hover:text-indigo-500" />
+            <h3 className="text-xl sm:text-lg font-semibold text-slate-800 dark:text-slate-100 mb-4 transition-colors duration-300 hover:text-indigo-600 dark:hover:text-indigo-400">
               No notes yet
             </h3>
-            <p className="text-slate-600 dark:text-slate-400 mb-8">
-              Start capturing your thoughts and ideas with AI-powered summaries
+            <p className="text-slate-600 dark:text-slate-400 mb-6 sm:mb-8 transition-colors duration-300 hover:text-slate-800 dark:hover:text-slate-200">
+              Share your thoughts and ideas with AI-powered summaries
             </p>
             <Link
               to="/create"
-              className="inline-flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/25"
+              className="inline-flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-medium transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl hover:shadow-indigo-500/40"
             >
-              <Plus className="w-5 h-5" />
+              <Plus className="w-5 h-5 transition-transform duration-300 group-hover:rotate-90" />
               <span>Create Your First Note</span>
             </Link>
           </div>
         </div>
       ) : (
-        <div className="text-center py-16">
-          <div className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/60 rounded-2xl p-12 max-w-md mx-auto">
+        <div className="text-center py-16 px-4 sm:px-6">
+          <div className="bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/60 dark:border-slate-700/60 rounded-2xl p-8 sm:p-12 max-w-md mx-auto">
             <FileText className="w-16 h-16 text-slate-400 mx-auto mb-6" />
-            <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-4">
+            <h3 className="text-xl sm:text-lg font-semibold text-slate-800 dark:text-slate-100 mb-4">
               No notes found
             </h3>
-            <p className="text-slate-600 dark:text-slate-400 mb-8">
+            <p className="text-slate-600 dark:text-slate-400 mb-6 sm:mb-8">
               Try adjusting your search terms or filters
             </p>
             <button
